@@ -1,0 +1,5 @@
+# Lets the user logged in at the seat open the Elgato Wave:1 (0fd9:006e) for
+# wave1-gain. Matches that one product only. "uaccess" grants access to the
+# active local session through an ACL and removes it when the user logs out;
+# the file must sort before 73-seat-late.rules, which applies the tag.
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="0fd9", ATTR{idProduct}=="006e", MODE="0660", TAG+="uaccess"

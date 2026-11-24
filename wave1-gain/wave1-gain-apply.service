@@ -1,0 +1,19 @@
+# Optional. Sets your chosen gain once at login, for when something (a
+# replug, the desktop's volume restore) puts it back up. Edit the number on
+# the ExecStart line. Install with the steps in README.md.
+[Unit]
+Description=Set the Elgato Wave:1 hardware gain
+After=wireplumber.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/wave1-gain set 10
+# The program needs no network and no new privileges; deny both.
+NoNewPrivileges=yes
+RestrictAddressFamilies=none
+LockPersonality=yes
+SystemCallArchitectures=native
+RestrictRealtime=yes
+
+[Install]
+WantedBy=default.target
